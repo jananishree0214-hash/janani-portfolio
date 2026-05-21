@@ -854,7 +854,7 @@
         {
           role: 'Java Full Stack Development',
           company: 'Magizchi Tech Academy',
-          period: '2024 – Present',
+          period: '2026 – Present',
           type: 'Training',
           desc: 'Intensive full-stack development training covering Java core, JDBC, Swing, JavaFX, MySQL, HTML, CSS, JavaScript and React. Building production-grade applications.',
           skills: ['Java', 'React', 'MySQL', 'JavaFX'],
@@ -863,7 +863,7 @@
         {
           role: 'AI & Machine Learning Intern',
           company: 'NoviTech R&D Pvt. Ltd., Coimbatore',
-          period: '2024',
+          period: '2025',
           type: 'Internship',
           desc: 'Completed AI and Machine Learning internship focusing on real-world applications, model training concepts and intelligent system design.',
           skills: ['AI', 'ML', 'Python'],
@@ -872,7 +872,7 @@
         {
           role: 'Data Analytics Intern',
           company: 'NoviTech R&D Pvt. Ltd., Coimbatore',
-          period: '2024',
+          period: '2025',
           type: 'Internship',
           desc: 'Worked on data analytics projects involving data visualisation, pattern recognition and insights extraction from structured datasets.',
           skills: ['Analytics', 'Python', 'Visualisation'],
@@ -881,7 +881,7 @@
         {
           role: 'B.A. English Literature',
           company: 'Kamarajar University, Madurai',
-          period: '2021 – 2024',
+          period: '2020 – 2023',
           type: 'Education',
           desc: 'Graduated with B.A. in English Literature. Developed strong communication, analytical and creative writing skills that complement my technical journey.',
           skills: ['Communication', 'Analysis', 'Writing'],
@@ -936,7 +936,7 @@
         {
           title: 'Artificial Intelligence',
           issuer: 'NoviTech R&D Pvt. Ltd.',
-          year: '2024',
+          year: '2025',
           icon: '🤖',
           color: '#d4af37',
           desc: 'Completed internship certification in AI fundamentals and applications.',
@@ -944,7 +944,7 @@
         {
           title: 'Machine Learning',
           issuer: 'NoviTech R&D Pvt. Ltd.',
-          year: '2024',
+          year: '2025',
           icon: '🧠',
           color: '#c9a227',
           desc: 'Earned certification for ML concepts, supervised and unsupervised learning.',
@@ -952,7 +952,7 @@
         {
           title: 'Data Analytics',
           issuer: 'NoviTech R&D Pvt. Ltd.',
-          year: '2024',
+          year: '2025',
           icon: '📈',
           color: '#e8c96d',
           desc: 'Certification in data analytics, visualisation and insight extraction.',
@@ -1009,21 +1009,24 @@
         }
         setSending(true);
         setError('');
-        emailjs.send(
-          'service_zawjlqs',
-          'template_dqozeaw',
-          {
+        fetch('https://formspree.io/f/xredprnk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
             name: form.name,
             email: form.email,
             message: form.message,
-            title: 'Portfolio Contact',
-          },
-          'QRLM0avb-ZIfxmVz7'
-        ).then(() => {
-          setSent(true);
-          setSending(false);
-          setForm({ name: '', email: '', message: '' });
-          setTimeout(() => setSent(false), 5000);
+          }),
+        }).then(res => {
+          if (res.ok) {
+            setSent(true);
+            setSending(false);
+            setForm({ name: '', email: '', message: '' });
+            setTimeout(() => setSent(false), 5000);
+          } else {
+            setSending(false);
+            setError('Something went wrong. Please try again!');
+          }
         }).catch(() => {
           setSending(false);
           setError('Something went wrong. Please try again!');
