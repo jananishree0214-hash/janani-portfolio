@@ -349,10 +349,10 @@
     .skill-bar-fill {
       height: 100%; border-radius: 99px;
       background: linear-gradient(90deg, #b8860b, #d4af37, #f5c518);
-      transform: scaleX(0); transform-origin: left;
+      width: 0%;
       transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
     }
-    .skill-bar-fill.animated { transform: scaleX(1); }
+    .skill-bar-fill.animated { width: var(--w); }
 
     /* ── Tag ── */
     .tag {
@@ -744,7 +744,7 @@
                     <span style={{ fontFamily: 'Space Mono, monospace', fontSize: '0.8rem', color: 'var(--violet)' }}>{s.level}%</span>
                   </div>
                   <div className="skill-bar-track">
-                    <div className="skill-bar-fill" style={{ '--w': `${s.level / 100}` }}></div>
+                    <div className="skill-bar-fill" style={{ '--w': `${s.level}%` }}></div>
                   </div>
                 </div>
               ))}
